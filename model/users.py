@@ -75,7 +75,6 @@ class User(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _name = db.Column(db.String(255), unique=False, nullable=False)
-    _country = db.Column(db.String(255), unique=False, nullable=False)
     _uid = db.Column(db.String(255), unique=True, nullable=False)
     _password = db.Column(db.String(255), unique=False, nullable=False)
     _dob = db.Column(db.Date)
@@ -84,9 +83,8 @@ class User(db.Model):
     posts = db.relationship("Post", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, country, uid, password="123qwerty", dob=date.today()):
+    def __init__(self, name, uid, password="123qwerty", dob=date.today()):
         self._name = name    # variables with self prefix become part of the object, 
-        self._country = country
         self._uid = uid
         self.set_password(password)
         self._dob = dob
@@ -101,20 +99,6 @@ class User(db.Model):
     def name(self, name):
         self._name = name
     
-    # a getter method, extracts email from object
-    @property
-    def country(self):
-        return self._country
-    
-    # a setter function, allows name to be updated after initial object creation
-    @country.setter
-    def country(self, country):
-        self._country = country
-        
-    # check if uid parameter matches user id in object, return boolean
-    def is_country(self, country):
-        return self._country == country
-
     # a getter method, extracts email from object
     @property
     def uid(self):
@@ -183,7 +167,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "country": self.country,
             "uid": self.uid,
             "dob": self.dob,
             "age": self.age,
@@ -192,12 +175,10 @@ class User(db.Model):
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name="", country="", uid="", password=""):
+    def update(self, name="", uid="", password=""):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
-        if len(country) > 0:
-            self.country = country
         if len(uid) > 0:
             self.uid = uid
         if len(password) > 0:
@@ -224,7 +205,7 @@ def initUsers():
     u1 = User(name='Thomas Edison', uid='toby', password='123toby', dob=date(1847, 2, 11))
     u2 = User(name='Nicholas Tesla', uid='niko', password='123niko')
     u3 = User(name='Alexander Graham Bell', uid='lex', password='123lex')
-    u4 = User(name='Eli Whitney', country='america', uid='whit', password='123whit')
+    u4 = User(name='Eli Whitney', uid='whit', password='123whit')
     u5 = User(name='John Mortensen', uid='jm1021', dob=date(1959, 10, 21))
 
     users = [u1, u2, u3, u4, u5]
