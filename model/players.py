@@ -107,11 +107,11 @@ def initPlayers():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    p1 = Player(name='Thomas Edison', country='toby')
-    p2 = Player(name='Nicholas Tesla', country='niko')
-    p3 = Player(name='Alexander Graham Bell', country='lex')
-    p4 = Player(name='Eli Whitney', country='whit')
-    p5 = Player(name='John Mortensen', country='jm1021')
+    p1 = Player(name='Dusan Mandic', country='Serbia')
+    p2 = Player(name='Jaden Nguyen', country='United States')
+    p3 = Player(name='Ivan Nagayev', country='Russia')
+    p4 = Player(name='Damir Buric', country='Croatia')
+    p5 = Player(name='Ioannis Fountoulis', country='Greece')
 
     players = [p1, p2, p3, p4, p5]
 
