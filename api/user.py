@@ -21,6 +21,10 @@ class UserAPI:
             name = body.get('name')
             if name is None or len(name) < 2:
                 return {'message': f'Name is missing, or is less than 2 characters'}, 210
+            # validate country
+            country = body.get('country')
+            if country is None or len(country) < 2:
+                return {'message': f'country is missing, or is less than 2 characters'}, 210
             # validate uid
             uid = body.get('uid')
             if uid is None or len(uid) < 2:
@@ -31,6 +35,7 @@ class UserAPI:
 
             ''' #1: Key code block, setup USER OBJECT '''
             uo = User(name=name, 
+                      country=country,
                       uid=uid)
             
             ''' Additional garbage error checking '''
