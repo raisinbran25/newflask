@@ -22,13 +22,13 @@ class PlayerAPI:
             if name is None or len(name) < 2:
                 return {'message': f'Name is missing, or is less than 2 characters'}, 210
             # validate uid
-            country = body.get('country')
-            if country is None or len(country) < 2:
+            score = body.get('score')
+            if score is None or len(score) < 2:
                 return {'message': f'User ID is missing, or is less than 2 characters'}, 210
 
             ''' #1: Key code block, setup USER OBJECT '''
             uo = Player(name=name, 
-                      country=country)
+                      score=score)
             
             ''' Additional garbage error checking '''
             # set password if provided

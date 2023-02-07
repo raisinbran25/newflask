@@ -22,12 +22,12 @@ class Player(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _name = db.Column(db.String(255), unique=False, nullable=False)
-    _country = db.Column(db.String(255), unique=True, nullable=False)
+    _score = db.Column(db.String(255), unique=True, nullable=False)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, country):
+    def __init__(self, name, score):
         self._name = name    # variables with self prefix become part of the object, 
-        self._country = country
+        self._score = score
 
     # a name getter method, extracts name from object
     @property
@@ -41,17 +41,17 @@ class Player(db.Model):
     
     # a getter method, extracts email from object
     @property
-    def country(self):
-        return self._country
+    def score(self):
+        return self._score
     
     # a setter function, allows name to be updated after initial object creation
-    @country.setter
-    def country(self, country):
-        self._country = country
+    @score.setter
+    def score(self, score):
+        self._score = score
         
     # check if uid parameter matches user id in object, return boolean
-    def is_country(self, country):
-        return self._country == country
+    def is_score(self, score):
+        return self._score == score
     
     
     # output content using str(object) in human readable form, uses getter
@@ -77,17 +77,17 @@ class Player(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "country": self.country,
+            "score": self.score,
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name="", country=""):
+    def update(self, name="", score=""):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
-        if len(country) > 0:
-            self.country = country
+        if len(score) > 0:
+            self.score = score
         db.session.commit()
         return self
 
@@ -107,11 +107,11 @@ def initPlayers():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    p1 = Player(name='Dusan Mandic', country='Serbia')
-    p2 = Player(name='Jaden Nguyen', country='United States')
-    p3 = Player(name='Ivan Nagayev', country='Russia')
-    p4 = Player(name='Damir Buric', country='Croatia')
-    p5 = Player(name='Ioannis Fountoulis', country='Greece')
+    p1 = Player(name='Dusan Mandic', score='98')
+    p2 = Player(name='Jaden Nguyen', score='78')
+    p3 = Player(name='Ivan Nagayev', score='99')
+    p4 = Player(name='Damir Buric', score='80')
+    p5 = Player(name='Ioannis Fountoulis', score='65')
 
     players = [p1, p2, p3, p4, p5]
 
