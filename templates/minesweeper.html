@@ -1,12 +1,12 @@
 <!-- Extending the predefined project layout -->
 {% extends "layouts/base.html" %}
 
-<!- This variable sets name of browser tab  -->
+<!-- This variable sets name of browser tab  -->
 {% set project = "Stubby" %}
 
-<!- This is a replacement block for Body in base.html -->
+<!--- This is a replacement block for Body in base.html -->
 {% block body %}
-    <!- Try building a new body here, bootstrap is a wise choice ->
+    <!-- Try building a new body here, bootstrap is a wise choice -->
     <script src="/static/js/minebe.js"></script>
     <style>
         /* class to create the map's container; uses CSS grid dsiplay to partition off buttons */
@@ -143,10 +143,6 @@
             background-color: #373737;
         }
     </style>
-    <div>
-    username:<input type="text" id="button" value="enter a username">
-    <button type="button" onclick="user()">Enter</button>
-    </div>
     number of mines:<input type="text" id="button" value="enter a number 1-20">
     <button type="button" onclick="enter()">Enter</button>
     <div class="map-container">

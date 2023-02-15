@@ -32,15 +32,6 @@ class PlayerAPI:
             
             ''' Additional garbage error checking '''
             # set password if provided
-            if password is not None:
-                uo.set_password(password)
-            # convert to date type
-            if dob is not None:
-                try:
-                    uo.dob = datetime.strptime(dob, '%m-%d-%Y').date()
-                except:
-                    return {'message': f'Date of birth format error {dob}, must be mm-dd-yyyy'}, 210
-            
             ''' #2: Key Code block to add user to database '''
             # create user in database
             player = uo.create()
